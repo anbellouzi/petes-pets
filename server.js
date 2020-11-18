@@ -14,7 +14,7 @@ const methodOverride = require('method-override')
 const app = express();
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/petes-pets');
+mongoose.connect('mongodb://localhost/petes-pets', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -54,5 +54,20 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// require our mailgun dependencies
+const nodemailer = require('nodemailer');
+const mg = require('nodemailer-mailgun-transport');
+
+// auth with our mailgun API key and domain
+const auth = {
+  auth: {
+    api_key: 'key-keyaldkjfadfasdfadsfadsf',
+    domain: 'domain.com'
+  }
+}
+
+// create a mailer
+const nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
 module.exports = app;
