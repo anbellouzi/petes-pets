@@ -19,7 +19,7 @@ mongoose.Promise = global.Promise;
 const url = 'mongodb://localhost/petes-pets'
 mongoose.connect(
   url,
-  { useNewUrlParser: true },
+  { useNewUrlParser: true, useUnifiedTopology: true },
   function(err, db) {
     console.log("Connected successfully to database");
 
