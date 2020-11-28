@@ -5,7 +5,7 @@ assert = require("assert");
 const url = "mongodb://localhost/petes-pets";
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  url,
+  process.env.MONGODB_URI || url,
   { useNewUrlParser: true },
   function(err, db) {
     assert.equal(null, err);
