@@ -13,22 +13,25 @@ const methodOverride = require('method-override')
 
 const app = express();
 
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://localhost/petes-pets', { useNewUrlParser: true, useUnifiedTopology: true });
-const url = 'mongodb://localhost/petes-pets'
-mongoose.connect(
-  url,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  function(err, db) {
-    if (err) {
-      console.log("ERROR:", err)
-    }
-    console.log("Connected successfully to database");
 
-    // db.close(); turn on for testing
-  }
-);
+// const mongoose = require('mongoose');
+// mongoose.Promise = global.Promise;
+// // mongoose.connect('mongodb://localhost/petes-pets', { useNewUrlParser: true, useUnifiedTopology: true });
+// const url = 'mongodb://localhost/petes-pets'
+// mongoose.connect(
+//   url,
+//   { useNewUrlParser: true, useUnifiedTopology: true },
+//   function(err, db) {
+//     if (err) {
+//       console.log("ERROR:", err)
+//     }
+//     console.log("Connected successfully to database");
+
+//     // db.close(); turn on for testing
+//   }
+// );
+
+require('./data/pets-db');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
