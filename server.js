@@ -14,7 +14,19 @@ const methodOverride = require('method-override')
 const app = express();
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/petes-pets', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://localhost/petes-pets', { useNewUrlParser: true, useUnifiedTopology: true });
+const url = 'mongodb://localhost/petes-pets'
+mongoose.connect(
+  url,
+  { useNewUrlParser: true },
+  function(err, db) {
+    assert.equal(null, err);
+    console.log("Connected successfully to database");
+
+    // db.close(); turn on for testing
+  }
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
