@@ -21,6 +21,9 @@ mongoose.connect(
   url,
   { useNewUrlParser: true, useUnifiedTopology: true },
   function(err, db) {
+    if (err) {
+      console.log("ERROR:", err)
+    }
     console.log("Connected successfully to database");
 
     // db.close(); turn on for testing
